@@ -1,8 +1,16 @@
 import beans.aspects.CounterAspect;
 import beans.aspects.DiscountAspect;
 import beans.aspects.LuckyWinnerAspect;
-import beans.models.*;
-import beans.services.*;
+import beans.models.Auditorium;
+import beans.models.Event;
+import beans.models.Rate;
+import beans.models.Ticket;
+import beans.models.User;
+import beans.services.AuditoriumService;
+import beans.services.BookingService;
+import beans.services.DiscountService;
+import beans.services.EventService;
+import beans.services.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

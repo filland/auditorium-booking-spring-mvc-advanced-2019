@@ -1,6 +1,5 @@
 package beans.controllers;
 
-import beans.models.Ticket;
 import beans.models.User;
 import beans.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

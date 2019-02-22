@@ -1,13 +1,11 @@
 package beans.configuration;
 
-import beans.configuration.db.DataSourceConfiguration;
-import beans.configuration.db.DbSessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -24,10 +22,6 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("beans")
-//@Import({AuditoriumConfiguration.class,
-//        StrategiesConfiguration.class,
-//        DataSourceConfiguration.class,
-//        DbSessionFactory.class})
 @EnableAspectJAutoProxy
 public class AppConfiguration extends WebMvcConfigurerAdapter {
 
@@ -40,11 +34,15 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
         registry.viewResolver(resolver);
     }
 
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+
     @Bean
-    public FreeMarkerConfig getFreeMarkerConfig() {
+    public FreeMarkerConfig freeMarkerConfig() {
 
         FreeMarkerConfigurer config = new FreeMarkerConfigurer();
-        // TODO have no idea why empty string makes freeMarkerViewResolver work
         config.setTemplateLoaderPath("");
         return config;
     }
