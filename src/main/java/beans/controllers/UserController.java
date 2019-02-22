@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Controller
 public class UserController {
@@ -34,24 +33,36 @@ public class UserController {
     }
 
     @RequestMapping(path = "/registration", method = RequestMethod.POST)
-    public ModelAndView registerUser(@RequestParam(required = false) User person) {
+    public ModelAndView registerUser(@RequestParam("name") String name,
+                                     @RequestParam("email") String email,
+                                     @RequestParam("birthday") String birthday) {
 
-        System.out.println("creating a new user");
+        try {
+            System.out.println("trying to create a new user");
 
-        String userName = UUID.randomUUID().toString().substring(0, 10);
-        User user1 = new User();
-        user1.setName(userName);
-        user1.setEmail( userName + "@email.org");
-        user1.setBirthday(LocalDate.now());
+            LocalDate date = LocalDate.parse(birthday);
 
-        User createdUser = userService.register(user1);
+            User newUser = new User();
+            newUser.setName(name);
+            newUser.setEmail(email);
+            newUser.setBirthday(date);
 
-        System.out.println("user created with id " + createdUser.getId());
+            User createdUser = userService.register(newUser);
 
-        System.out.println(userService.getUserByEmail(createdUser.getEmail()));
+            System.out.println("user created with id " + createdUser.getId());
 
-        ModelAndView mv = new ModelAndView("redirect:/registration");
+            System.out.println(userService.getUserByEmail(createdUser.getEmail()));
 
-        return mv;
+            ModelAndView mv = new ModelAndView("redirect:/registration");
+            return mv;
+
+        } catch (Throwable e) {
+
+            ModelAndView mv = new ModelAndView("redirect:/error");
+            mv.addObject("error_message", "Invalid data provided.");
+
+            return mv;
+        }
+
     }
 }
