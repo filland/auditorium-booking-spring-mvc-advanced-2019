@@ -2,18 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title>Create auditorium</title>
     <link href="/resources/css/common.css" rel="stylesheet" type="text/css"/>
-
 </head>
 <body>
+
 <#include "common/header.ftl">
 <div id="main">
+    <h3>Create auditorium:</h3>
 
-    <h1>Error</h1>
-
-    <p>Ups, seems like something went wrong...</p>
-    <#--Error message: ${error_message}-->
 </div>
 <#include "common/footer.ftl">
 </body>

@@ -29,6 +29,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
     public void configureViewResolvers(ViewResolverRegistry registry) {
 
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+        resolver.setContentType("text/html; charset=utf-8");
         resolver.setPrefix("/WEB-INF/freemarker/");
         resolver.setSuffix(".ftl");
         registry.viewResolver(resolver);
@@ -43,6 +44,7 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
     public FreeMarkerConfig freeMarkerConfig() {
 
         FreeMarkerConfigurer config = new FreeMarkerConfigurer();
+        config.setDefaultEncoding("UTF-8");
         config.setTemplateLoaderPath("");
         return config;
     }

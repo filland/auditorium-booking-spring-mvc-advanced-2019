@@ -16,8 +16,11 @@ import java.util.List;
  * Time: 1:36 PM
  */
 @Configuration
-@PropertySource({"classpath:auditoriums/blueHall.properties", "classpath:auditoriums/redHall.properties",
-                 "classpath:auditoriums/yellowHall.properties"})
+@PropertySource({
+        "classpath:auditoriums/blueHall.properties",
+        "classpath:auditoriums/redHall.properties",
+        "classpath:auditoriums/yellowHall.properties"
+})
 public class AuditoriumConfiguration {
 
     @Value("${blue.hall.name}")

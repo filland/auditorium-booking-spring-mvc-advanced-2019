@@ -14,6 +14,8 @@ public class Event {
     private String        name;
     private Rate          rate;
     private double        basePrice;
+
+
     private LocalDateTime dateTime;
     private Auditorium    auditorium;
 

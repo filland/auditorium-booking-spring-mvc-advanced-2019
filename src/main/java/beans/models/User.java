@@ -1,5 +1,7 @@
 package beans.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 /**
@@ -13,6 +15,8 @@ public class User {
     private long      id;
     private String    email;
     private String    name;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthday;
 
     public User() {

@@ -1,26 +1,33 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>${title}</title>
+    <link href="/resources/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/resources/css/registration.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<h1>${title}</h1>
+<#include "common/header.ftl">
+<div id="main">
+    <h1>${title}</h1>
 
-<p>${message}</p>
+    <form method="post" action="/registration">
 
-
-<form method="post" action="/registration" >
-
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email">
-
-   <!--<label for="birthday">Birthday:</label>-->
-   <input type="hidden" id="birthday" name="birthday" value="2000-01-01">
-
-    <button type="submit">Register</button>
-</form>
-
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="alexey">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" value="fasdfasffd@gmail.com">
+        </div>
+        <div>
+            <label for="birthday">Birthday:</label>
+            <input type="text" id="birthday" name="birthday" value="2000-01-01">
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+<#include "common/footer.ftl">
 </body>
 </html>

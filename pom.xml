@@ -121,6 +121,10 @@
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
                         <contextPath>/</contextPath>
+                        <_initParams>
+                            <!-- to make jetty apply css changes while it is running-->
+                            <org.eclipse.jetty.servlet.Default.useFileMappedBuffer>false</org.eclipse.jetty.servlet.Default.useFileMappedBuffer>
+                        </_initParams>
                     </webApp>
                 </configuration>
             </plugin>
