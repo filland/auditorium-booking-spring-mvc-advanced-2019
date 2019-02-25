@@ -1,4 +1,4 @@
-package beans.controllers;
+package beans.controllers.advice;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +13,7 @@ public class GenericExceptionHandler {
         e.printStackTrace();
 
         ModelAndView mv = new ModelAndView("error");
-//        mv.addObject("error_message", e.getMessage());
+
         return mv;
     }
 }

@@ -9,13 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -53,6 +49,9 @@ public class EventController {
                             @RequestParam("auditorium_name") String auditoriumName,
                             HttpServletResponse response) {
 
+        System.out.println("creating a new event");
+
+
         try {
 
             Event event = new Event();
@@ -63,14 +62,12 @@ public class EventController {
 
             Auditorium auditorium = auditoriumService.getByName(auditoriumName);
             event.setAuditorium(auditorium);
-
-            System.out.println("creating a new event = " + event);
-
             Event createEvent = eventService.create(event);
 
             if (null != createEvent) {
 
                 System.out.println("event created successfully");
+                System.out.println("created event = "+createEvent);
                 response.setStatus(HttpStatus.OK.value());
 
             } else {
@@ -81,6 +78,7 @@ public class EventController {
 
         } catch (Throwable e) {
 
+            e.printStackTrace();
             System.err.println("error while creating an event");
             response.setStatus(HttpStatus.BAD_REQUEST.value());
         }
@@ -101,6 +99,8 @@ public class EventController {
                     LocalDate.of(2020, 2, 5),
                     LocalTime.of(15, 45, 0)
             );
+
+            System.out.println(dateOfEvent.toString());
 
             eventService.create(
                     new Event(
@@ -164,6 +164,5 @@ public class EventController {
             return new ModelAndView("redirect:/");
         }
     }
-
 
 }

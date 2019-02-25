@@ -1,4 +1,4 @@
-########## Module 1 ##########
+#################### Module 1 ####################
 Task description:
 
 DONE (using the project provided by my mentor)
@@ -14,20 +14,21 @@ DONE
  views rendered via Freemarker template engine. Use FreeMarkerViewResolver
   for view resolving procedure.
 
-TODO IN PROGRESS
+DONE (beans.controllers.BookingPDFController)
 4. For operations, that return list of booked tickets (by event, or by
 user) implement alternative controllers, that will return result as PDF
 document. Map this controller to a specific value of Accept request header
   - Accept=application/pdf
 
+DONE (beans.controllers.BatchEventUploadController, beans.controllers.BatchUserUploadController)
 5. Implement batch loading of users and events into system. In order to
 do this, create controller which accepts multipart file upload, parses
 it and calls all Booking functionality methods to add events and users
 into the system. The format of the file (JSON, XML, ...) is up to you
 as long as you can implement the correct parsing procedure.
 
-? DONE (see GenericExceptionHandler)
+DONE (see controllers.advice.GenericExceptionHandler)
 6. Implement generic exception handler which should redirect all controller
 exceptions to simple Freemarker view, that just prints exception message.
 
-########## Module 1 ##########
+#################### Module 1 ####################

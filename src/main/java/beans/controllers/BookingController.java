@@ -1,6 +1,5 @@
 package beans.controllers;
 
-import beans.daos.EventDAO;
 import beans.models.Auditorium;
 import beans.models.Event;
 import beans.models.Ticket;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,16 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.JTextComponent;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping(path = "/booking")
@@ -94,9 +88,6 @@ public class BookingController {
                 Collections.singletonList(Integer.valueOf(commonSeatNumber)),
                 mockUser
         );
-
-        System.out.println("vip = " + vipTicketPrice);
-        System.out.println("common = " + commonTicketPrice);
 
         Map map = new HashMap();
         map.put("vip_ticket_price", vipTicketPrice);
@@ -181,14 +172,10 @@ public class BookingController {
 
         System.out.println("searching for booked tickets for a event = "+eventName);
 
-        System.out.println(dateTime);
-
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime);
 
         List<Ticket> ticketsForEvent =
                 bookingService.getTicketsForEvent(eventName, auditoriumName, localDateTime);
-
-        System.out.println("ticketsForEvent size = " + ticketsForEvent.size());
 
         Map map = new HashMap();
         map.put("tickets", ticketsForEvent);

@@ -8,12 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.util.Enumeration;
 
 @Controller
 public class UserController {
@@ -40,30 +37,12 @@ public class UserController {
 
         try {
 
-            System.out.println("user = "+ user);
-
-//            Enumeration<String> requestHeaderNames = request.getHeaderNames();
-//
-//            while (requestHeaderNames.hasMoreElements()){
-//
-//                String headerName = requestHeaderNames.nextElement();
-//                System.out.println(headerName+ " = "+ request.getHeader(headerName));
-//            }
-
+            System.out.println("user = " + user);
             System.out.println("trying to create a new user");
 
-//            LocalDate date = LocalDate.parse(birthday);
-//
-//            User newUser = new User();
-//            newUser.setName(name);
-//            newUser.setEmail(email);
-//            newUser.setBirthday(date);
-
-//            User createdUser = userService.register(newUser);
             User createdUser = userService.register(user);
 
             System.out.println("user created with id " + createdUser.getId());
-
             System.out.println(userService.getUserByEmail(createdUser.getEmail()));
 
             ModelAndView mv = new ModelAndView("redirect:/");
@@ -79,3 +58,4 @@ public class UserController {
 
     }
 }
+

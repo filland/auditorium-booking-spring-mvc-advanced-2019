@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import util.CsvUtil;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,8 +63,6 @@ public class AuditoriumController {
         for (int i = 1; i <= event.getAuditorium().getSeatsNumber(); i++) {
             seatsList.add(i);
         }
-
-        System.out.println("seats size === "+seatsList.size());
 
         Map model = new HashMap();
         model.put("seats", CsvUtil.fromListToCsv(seatsList));
