@@ -55,8 +55,8 @@ function findBookedTicketsAndGeneratePdf() {
 
             console.log(data);
 
-            var a = document.createElement("aaaa");
-            var file = new Blob([data], {type: "application/pdf;base64"});
+            var a = document.createElement("a");
+            var file = new Blob([data], {type: "application/pdf"});
             a.href = URL.createObjectURL(file);
             a.download = "booked_tickets.pdf";
             a.click();
