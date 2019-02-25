@@ -127,12 +127,12 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", rate=" + rate +
-               ", basePrice=" + basePrice +
-               ", dateTime=" + dateTime +
-               ", auditorium=" + auditorium +
-               '}';
+               "\nid=" + id +
+               ", \nname='" + name + '\'' +
+               ", \nrate=" + rate +
+               ", \nbasePrice=" + basePrice +
+               ", \ndateTime=" + dateTime +
+               ", \nauditorium=" + auditorium +
+               "\n}";
     }
 }

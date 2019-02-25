@@ -23,7 +23,7 @@ public class EventDAOImpl extends AbstractDAO implements EventDAO {
 
     @Override
     public Event create(Event event) {
-        System.out.println("Creating " + event);
+//        System.out.println("Creating " + event);
         EventDAO.validateEvent(event);
         List<Event> byAuditoriumAndDate = getByAuditoriumAndDate(event.getAuditorium(), event.getDateTime());
         if (byAuditoriumAndDate.size() > 0) {

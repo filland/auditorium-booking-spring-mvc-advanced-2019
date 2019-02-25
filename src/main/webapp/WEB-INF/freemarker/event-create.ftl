@@ -12,9 +12,6 @@
 <#include "common/header.ftl">
 <div id="main">
     <h3>Create event:</h3>
-    <form method="post" action="/event/create-events">
-        <button type="submit">Create some events</button>
-    </form>
     <div>
         <label>Name:
             <input type="text" id="name" value="Main evening of the year">
@@ -47,7 +44,9 @@
        <label>
            Auditorium:
            <select id="auditorium_name">
-               <option value="Audit1" selected>auditorium 1</option>
+               <#list auditoriums as audt>
+                   <option value="${audt.name}" selected>${audt.name}</option>
+               </#list>
            </select>
        </label>
    </div>

@@ -62,7 +62,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public double getTicketPrice(String eventName, String auditoriumName, LocalDateTime dateTime, List<Integer> seats,
+    public double getTicketPrice(String eventName,
+                                 String auditoriumName,
+                                 LocalDateTime dateTime,
+                                 List<Integer> seats,
                                  User user) {
         if (Objects.isNull(eventName)) {
             throw new NullPointerException("Event name is [null]");

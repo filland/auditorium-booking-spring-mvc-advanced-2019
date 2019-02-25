@@ -40,6 +40,8 @@ public class EventController {
 
         ModelAndView mv = new ModelAndView("event-create");
 
+        mv.addObject("auditoriums", auditoriumService.getAuditoriums());
+
         return mv;
     }
 
@@ -86,7 +88,8 @@ public class EventController {
 
     @RequestMapping(path = "/create-events", method = RequestMethod.POST)
     @SuppressWarnings("Duplicates")
-    public void createSeveralEvents(HttpServletResponse response) {
+    @Deprecated
+    public ModelAndView createSeveralEvents() {
 
         try {
             String auditoriumName = "Blue hall";
@@ -94,21 +97,45 @@ public class EventController {
             Auditorium yellowHall = auditoriumService.getByName("Yellow hall");
             Auditorium redHall = auditoriumService.getByName("Red hall");
             String eventName = "The revenant";
-            LocalDateTime dateOfEvent = LocalDateTime.of(LocalDate.of(2020, 2, 5), LocalTime.of(15, 45, 0));
+            LocalDateTime dateOfEvent = LocalDateTime.of(
+                    LocalDate.of(2020, 2, 5),
+                    LocalTime.of(15, 45, 0)
+            );
 
-            Event event1 = eventService.create(
-                    new Event(eventName, Rate.HIGH, 60, LocalDateTime.of(LocalDate.of(2020, 2, 5), LocalTime.of(9, 0, 0)),
-                            blueHall));
-            System.out.println();
-            System.out.println("Event by name: " + eventService.getByName(event1.getName()));
-            System.out.println();
-            eventService.create(new Event(eventName, Rate.HIGH, 60, dateOfEvent, blueHall));
             eventService.create(
-                    new Event("123 meeting", Rate.HIGH, 60, LocalDateTime.of(LocalDate.of(2020, 2, 5), LocalTime.of(21, 18, 0)),
-                            blueHall));
+                    new Event(
+                            eventName,
+                            Rate.HIGH,
+                            60,
+                            LocalDateTime.of(
+                                    LocalDate.of(2020, 2, 5),
+                                    LocalTime.of(9, 0, 0)
+                            ),
+                            blueHall)
+            );
+            eventService.create(
+                    new Event(
+                            "Some event",
+                            Rate.HIGH,
+                            60,
+                            dateOfEvent,
+                            blueHall
+                    )
+            );
+            eventService.create(
+                    new Event(
+                            "TAT meeting",
+                            Rate.HIGH,
+                            60,
+                            LocalDateTime.of(
+                                    LocalDate.of(2020, 2, 5),
+                                    LocalTime.of(21, 18, 0)
+                            ),
+                            blueHall)
+            );
 
             Event event2 = new Event(
-                    "Minsk day",
+                    "Epam's day",
                     Rate.HIGH,
                     90,
                     LocalDateTime.of(
@@ -119,7 +146,7 @@ public class EventController {
             eventService.create(event2);
 
             Event event = new Event(
-                    "Yellow day",
+                    "BMTH concert",
                     Rate.HIGH,
                     150,
                     LocalDateTime.of(
@@ -129,13 +156,12 @@ public class EventController {
             );
             eventService.create(event);
 
-
-            response.setStatus(HttpStatus.OK.value());
+            return new ModelAndView("redirect:/");
 
         } catch (Throwable e) {
 
-
-            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            System.out.println("error while creating a few events");
+            return new ModelAndView("redirect:/");
         }
     }
 

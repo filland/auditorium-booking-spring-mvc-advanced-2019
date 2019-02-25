@@ -14,8 +14,9 @@
     <ul>
         <li><a href="/registration">Registration page</a></li>
         <li><a href="/event/create">Create new event</a></li>
-        <!--<li><a href="/booking">Booking page</a></li>-->
+        <li><a href="/booking/book">Booking page</a></li>
         <li><a href="/booking/find-ticket-price">Find ticket price</a></li>
+        <li><a href="/booking/find-booked-tickets">Find booked tickets for an event</a></li>
     </ul>
 </div>
 </body>

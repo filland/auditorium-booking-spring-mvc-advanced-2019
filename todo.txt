@@ -5,14 +5,16 @@ DONE (using the project provided by my mentor)
 1. Based on the codebase of previous hometasks, create a web application,
 configure Spring MVC application context and dispatcher servlet.
 
-TODO IN PROGRESS
+DONE
 2. For all Booking operations implement Spring MVC annotation-based controllers.
 
+DONE
 3. For operations that return one or several entites as a result
 (e.g. getUserByEmail, getUsersByName, getBookedTickets) implement simple
  views rendered via Freemarker template engine. Use FreeMarkerViewResolver
   for view resolving procedure.
 
+TODO IN PROGRESS
 4. For operations, that return list of booked tickets (by event, or by
 user) implement alternative controllers, that will return result as PDF
 document. Map this controller to a specific value of Accept request header
@@ -27,10 +29,5 @@ as long as you can implement the correct parsing procedure.
 ? DONE (see GenericExceptionHandler)
 6. Implement generic exception handler which should redirect all controller
 exceptions to simple Freemarker view, that just prints exception message.
-
-TODO:
-
-DONE:
-- create page and controller stuff for creating events (1h)
 
 ########## Module 1 ##########

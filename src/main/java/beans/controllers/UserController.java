@@ -66,7 +66,7 @@ public class UserController {
 
             System.out.println(userService.getUserByEmail(createdUser.getEmail()));
 
-            ModelAndView mv = new ModelAndView("redirect:/registration");
+            ModelAndView mv = new ModelAndView("redirect:/");
             return mv;
 
         } catch (Throwable e) {
