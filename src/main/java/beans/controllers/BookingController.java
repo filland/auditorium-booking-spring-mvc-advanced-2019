@@ -1,5 +1,6 @@
 package beans.controllers;
 
+import beans.enums.Role;
 import beans.models.Auditorium;
 import beans.models.Event;
 import beans.models.Ticket;
@@ -11,6 +12,7 @@ import beans.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -115,7 +117,6 @@ public class BookingController {
 
         try {
 
-
             User user = userService.getById(userId);
             Event event = eventService.getByName(eventName).get(0);
 
@@ -149,7 +150,7 @@ public class BookingController {
         }
     }
 
-
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(path = "/find-booked-tickets", method = RequestMethod.GET)
     public ModelAndView openFindBookedTicketsPage() {
 
@@ -165,8 +166,10 @@ public class BookingController {
         return mv;
     }
 
+    @Secured("ROLE_BOOKING_MANAGER")
     @RequestMapping(path = "/search-booked-tickets", method = RequestMethod.GET)
-    public @ResponseBody Map getBookedTickets(@RequestParam("event_name") String eventName,
+    @ResponseBody
+    public Map getBookedTickets(@RequestParam("event_name") String eventName,
                                 @RequestParam("date_time") String dateTime,
                                 @RequestParam("auditorium_name") String auditoriumName) {
 

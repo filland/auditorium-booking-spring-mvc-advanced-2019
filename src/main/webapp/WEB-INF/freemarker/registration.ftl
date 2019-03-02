@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>${title}</title>
-    <link href="/resources/css/common.css" rel="stylesheet" type="text/css"/>
     <link href="/resources/css/registration.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<#include "common/header.ftl">
-<div id="main">
+<div id="registration-box">
     <h1>${title}</h1>
 
     <form method="post" action="/registration">
@@ -22,12 +20,20 @@
             <input type="text" id="email" name="email" value="fasdfasffd@gmail.com">
         </div>
         <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="123123">
+        </div>
+        <div>
+            <label for="role">Role:</label>
+            <input type="text" id="role" name="role" value="BOOKING_MANAGER">
+        </div>
+        <div>
             <label for="birthday">Birthday:</label>
             <input type="text" id="birthday" name="birthday" value="2000-01-01">
         </div>
+
         <button type="submit">Register</button>
     </form>
 </div>
-<#include "common/footer.ftl">
 </body>
 </html>

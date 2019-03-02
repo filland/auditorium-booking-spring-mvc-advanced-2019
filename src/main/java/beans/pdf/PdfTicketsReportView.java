@@ -1,4 +1,4 @@
-package beans.view;
+package beans.pdf;
 
 import beans.models.Ticket;
 import com.lowagie.text.Document;

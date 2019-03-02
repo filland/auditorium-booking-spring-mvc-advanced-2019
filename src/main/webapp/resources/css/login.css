@@ -1,0 +1,30 @@
+body {
+    background-color: #f1f1f1;
+}
+
+.error {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+}
+
+.msg {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    color: #31708f;
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1;
+}
+
+#login-box {
+    width: 300px;
+    padding: 20px;
+    margin: 50px auto;
+    background: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 2px;
+}

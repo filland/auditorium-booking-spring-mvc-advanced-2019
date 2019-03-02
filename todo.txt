@@ -1,8 +1,10 @@
 #################### Module 2 ####################
 Task description:
 
+DONE
 1. Configure Spring Security for ticket booking web application - add DelegatingFilterProxy to web.xml
 
+DONE
 2. Configure access control via security namespace. All application operations should be
 accessible to users with role RESGISTERED_USER only. Getting booked tickets for particular
 event should be accessible only to users with role BOOKING_MANAGER. Add two new fields to

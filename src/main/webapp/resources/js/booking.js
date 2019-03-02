@@ -70,7 +70,9 @@ function createNewUsers() {
         {
             name: "alexey",
             email: "fasdfasffd@gmail.com",
-            birthday: "2000-01-01"
+            birthday: "2000-01-01",
+            roles: "ROLE_REGISTERED_USER",
+            password : "123123"
         },
         function (data) {
             console.log("created a new user");
@@ -85,7 +87,9 @@ function createNewUsers() {
         {
             name: "bob",
             email: "123@gmail.com",
-            birthday: "2001-01-01"
+            birthday: "2001-01-01",
+            roles: "ROLE_REGISTERED_USER",
+            password : "123123"
         },
         function (data) {
             console.log("created a new user");

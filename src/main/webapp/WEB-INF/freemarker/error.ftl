@@ -13,7 +13,7 @@
     <h1>Error</h1>
 
     <p>Ups, seems like something went wrong...</p>
-    <#--Error message: ${error_message}-->
+   <#if error_message??> Error message: ${error_message}</#if>
 </div>
 <#include "common/footer.ftl">
 </body>

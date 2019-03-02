@@ -1,5 +1,6 @@
 package beans.models;
 
+import beans.enums.Role;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -7,6 +8,10 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,6 +30,14 @@ public class User {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate birthday;
 
+    private String password;
+    private String roles;
+
+    {
+        // setting default user's role
+        roles = Role.ROLE_REGISTERED_USER.toString();
+    }
+
     public User() {
     }
 
@@ -33,6 +46,15 @@ public class User {
         this.email = email;
         this.name = name;
         this.birthday = birthday;
+    }
+
+    public User(long id, String email, String name, LocalDate birthday, String password, String roles) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.birthday = birthday;
+        this.password = password;
+        this.roles = roles;
     }
 
     public User(String email, String name, LocalDate birthday) {
@@ -75,41 +97,69 @@ public class User {
         this.birthday = birthday;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public List<Role> getRolesList(){
+
+        List<Role> list = new ArrayList<>();
+
+        try {
+
+            String[] roles = this.roles.split(",");
+
+            for (String role : roles) {
+                list.add(Role.valueOf(role));
+            }
+
+            return list;
+
+        } catch (Throwable e){
+            return Collections.emptyList();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-
-        if (id != user.id)
-            return false;
-        if (email != null ? !email.equals(user.email) : user.email != null)
-            return false;
-        if (name != null ? !name.equals(user.name) : user.name != null)
-            return false;
-        return birthday != null ? birthday.equals(user.birthday) : user.birthday == null;
-
+        return id == user.id &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-        return result;
+        return Objects.hash(id, email, name, birthday, password, roles);
     }
+
 
     @Override
     public String toString() {
         return "User{" +
-               "id=" + id +
-               ", email='" + email + '\'' +
-               ", name='" + name + '\'' +
-               ", birthday=" + birthday +
-               '}';
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", password='" + password + '\'' +
+                ", roles='" + roles + '\'' +
+                '}';
     }
 }

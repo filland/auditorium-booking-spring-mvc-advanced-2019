@@ -1,5 +1,17 @@
+body {
+    background-color: #f1f1f1;
+}
+
+
 form div {
-
     padding-bottom: 7px;
+}
 
+#registration-box {
+    width: 300px;
+    padding: 20px;
+    margin: 50px auto;
+    background: #fff;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 2px;
 }
