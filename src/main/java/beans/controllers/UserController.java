@@ -42,6 +42,7 @@ public class UserController {
             User createdUser = userService.register(user);
 
             System.out.println("user created with id " + createdUser.getId());
+            System.out.println(createdUser);
 
             ModelAndView mv = new ModelAndView("redirect:/login");
             return mv;
