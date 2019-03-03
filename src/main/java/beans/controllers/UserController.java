@@ -37,15 +37,13 @@ public class UserController {
 
         try {
 
-            System.out.println("user = " + user);
             System.out.println("trying to create a new user");
 
             User createdUser = userService.register(user);
 
             System.out.println("user created with id " + createdUser.getId());
-            System.out.println(userService.getUserByEmail(createdUser.getEmail()));
 
-            ModelAndView mv = new ModelAndView("redirect:/");
+            ModelAndView mv = new ModelAndView("redirect:/login");
             return mv;
 
         } catch (Throwable e) {

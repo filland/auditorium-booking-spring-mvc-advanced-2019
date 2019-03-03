@@ -24,8 +24,13 @@
             <input type="password" id="password" name="password" value="123123">
         </div>
         <div>
-            <label for="role">Role:</label>
-            <input type="text" id="role" name="role" value="BOOKING_MANAGER">
+            <label>
+                Role:
+                <select id="roles" name="roles">
+                    <option value="ROLE_REGISTERED_USER" selected>REGISTERED_USER</option>
+                    <option value="ROLE_BOOKING_MANAGER">BOOKING_MANAGER</option>
+                </select>
+            </label>
         </div>
         <div>
             <label for="birthday">Birthday:</label>

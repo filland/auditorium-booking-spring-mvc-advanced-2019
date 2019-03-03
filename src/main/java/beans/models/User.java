@@ -21,9 +21,9 @@ import java.util.Objects;
  */
 public class User {
 
-    private long      id;
-    private String    email;
-    private String    name;
+    private long id;
+    private String email;
+    private String name;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonDeserialize(using = LocalDateDeserializer.class)
@@ -32,11 +32,6 @@ public class User {
 
     private String password;
     private String roles;
-
-    {
-        // setting default user's role
-        roles = Role.ROLE_REGISTERED_USER.toString();
-    }
 
     public User() {
     }
@@ -113,13 +108,22 @@ public class User {
         this.roles = roles;
     }
 
-    public List<Role> getRolesList(){
+    public List<Role> getRolesList() {
 
         List<Role> list = new ArrayList<>();
 
         try {
 
+            System.out.println("user's roles = " + roles);
+
             String[] roles = this.roles.split(",");
+
+            if (roles.length == 0) {
+
+                System.out.println("creating list singleton");
+
+                return Collections.singletonList(Role.valueOf(this.roles));
+            }
 
             for (String role : roles) {
                 list.add(Role.valueOf(role));
@@ -127,7 +131,7 @@ public class User {
 
             return list;
 
-        } catch (Throwable e){
+        } catch (Throwable e) {
             return Collections.emptyList();
         }
     }

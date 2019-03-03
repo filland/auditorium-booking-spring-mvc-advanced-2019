@@ -1,6 +1,7 @@
 package beans.services;
 
 import beans.daos.UserDAO;
+import beans.enums.Role;
 import beans.models.Ticket;
 import beans.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public User register(User user) {
+
+        if (null == user.getRoles()){
+
+            System.out.println("user's roles is null, adding default role");
+            user.setRoles(Role.ROLE_REGISTERED_USER.name());
+        }
+
         return userDAO.create(user);
     }
 
@@ -41,6 +49,11 @@ public class UserServiceImpl implements UserService {
 
     public User getUserByEmail(String email) {
         return userDAO.getByEmail(email);
+    }
+
+    @Override
+    public User getByName(String username) {
+        return userDAO.getByName(username);
     }
 
     public List<User> getUsersByName(String name) {

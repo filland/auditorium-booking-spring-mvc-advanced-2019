@@ -1,20 +1,25 @@
 package beans.configuration;
 
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.Collections;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserDetailsService userDetailsServiceImpl;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,17 +44,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected AuthenticationManager authenticationManager() throws Exception {
 
-        auth
-                .inMemoryAuthentication()
-                    .withUser("user")
-                    .password("123123")
-                    .roles("RESGISTERED_USER")
-                .and()
-                    .withUser("admin")
-                    .password("123123")
-                    .roles("BOOKING_MANAGER");
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsServiceImpl);
+
+        return new ProviderManager(Collections.singletonList(provider));
     }
 
 }

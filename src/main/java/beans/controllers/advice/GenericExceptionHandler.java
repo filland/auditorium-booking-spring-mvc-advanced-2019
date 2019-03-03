@@ -22,7 +22,7 @@ public class GenericExceptionHandler {
     public ModelAndView handleAccessDenied(){
 
         ModelAndView mv = new ModelAndView("error");
-        mv.addObject("error_message", "You are not have rights to see this page.");
+        mv.addObject("error_message", "You do not have rights to see this page.");
 
         return mv;
     }

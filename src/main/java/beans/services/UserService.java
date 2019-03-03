@@ -21,6 +21,8 @@ public interface UserService {
 
     User getUserByEmail(String email);
 
+    User getByName(String username);
+
     List<User> getUsersByName(String name);
 
     List<Ticket> getBookedTickets();

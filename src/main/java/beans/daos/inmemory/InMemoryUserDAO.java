@@ -67,6 +67,11 @@ public class InMemoryUserDAO implements UserDAO {
         return dbEmailIndex.get(email);
     }
 
+    @Override
+    public User getByName(String name) {
+        throw new NullPointerException("not implemented yet");
+    }
+
     public List<User> getAllByName(String name) {
         return dbNameIndex.get(name).stream().collect(Collectors.toList());
     }

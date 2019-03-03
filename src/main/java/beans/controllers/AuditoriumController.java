@@ -27,7 +27,8 @@ public class AuditoriumController {
     private EventService eventService;
 
     @RequestMapping(path = "/seats", method = RequestMethod.GET)
-    public @ResponseBody Map getSeats(@RequestParam("event_name") String eventName){
+    @ResponseBody
+    public Map getSeats(@RequestParam("event_name") String eventName){
 
         System.out.println("fetching number of seats for event called = "+eventName);
 
@@ -52,7 +53,8 @@ public class AuditoriumController {
     }
 
     @RequestMapping(path = "/seats-all", method = RequestMethod.GET)
-    public @ResponseBody Map getAllSeats(@RequestParam("event_name") String eventName,
+    @ResponseBody
+    public Map getAllSeats(@RequestParam("event_name") String eventName,
                                          HttpServletResponse response){
 
         System.out.println("fetching number of ALL seats");

@@ -1,6 +1,5 @@
 package beans.controllers;
 
-import beans.enums.Role;
 import beans.models.Auditorium;
 import beans.models.Event;
 import beans.models.Ticket;
