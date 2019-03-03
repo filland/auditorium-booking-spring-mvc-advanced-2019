@@ -16,9 +16,11 @@ DONE
 3. Implement form-based login via security namespace, add custom login page, configure
 DAOAuthenticationProvider and UserDetailsService to load user data from database. Configure logout filter.
 
+DONE
 4. Configure Remember-Me authentication.
 
 5. Implement password encoding during authentication.
+
 #################### Module 2 ####################
 
 

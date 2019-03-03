@@ -33,13 +33,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .permitAll()
+                    .formLogin()
+                    .loginPage("/login")
+                    .failureUrl("/login?error")
+                    .permitAll()
                 .and()
-                .logout()
-                .logoutSuccessUrl("/login?logout");
+                    .logout()
+                    .logoutSuccessUrl("/login?logout")
+                    .deleteCookies("JSESSIONID")
+                .and()
+                    .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400);
 
     }
 
@@ -52,4 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new ProviderManager(Collections.singletonList(provider));
     }
 
+
+    @Override
+    protected UserDetailsService userDetailsService() {
+        return userDetailsServiceImpl;
+    }
 }
