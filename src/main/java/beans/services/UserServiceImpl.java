@@ -22,12 +22,15 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    @Qualifier("userDAO")
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserServiceImpl(@Qualifier("userDAO")UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     public User register(User user) {
 
@@ -37,13 +40,8 @@ public class UserServiceImpl implements UserService {
             user.setRoles(Role.ROLE_REGISTERED_USER.name());
         }
 
-        System.out.println("user = "+user);
-
         String password = user.getPassword();
-        System.out.println("pain text pass = "+password);
         String encodedPass = passwordEncoder.encode(password);
-
-        System.out.println("pass after encryption = "+encodedPass);
 
         user.setPassword(encodedPass);
 

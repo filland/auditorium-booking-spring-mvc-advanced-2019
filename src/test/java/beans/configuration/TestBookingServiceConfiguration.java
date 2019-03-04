@@ -4,16 +4,37 @@ import beans.daos.AuditoriumDAO;
 import beans.daos.BookingDAO;
 import beans.daos.EventDAO;
 import beans.daos.UserDAO;
-import beans.daos.mocks.*;
-import beans.models.*;
-import beans.services.*;
+import beans.daos.mocks.BookingDAOBookingMock;
+import beans.daos.mocks.DBAuditoriumDAOMock;
+import beans.daos.mocks.EventDAOMock;
+import beans.daos.mocks.UserDAOMock;
+import beans.models.Auditorium;
+import beans.models.Event;
+import beans.models.Rate;
+import beans.models.Ticket;
+import beans.models.User;
+import beans.services.AuditoriumService;
+import beans.services.AuditoriumServiceImpl;
+import beans.services.BookingService;
+import beans.services.BookingServiceImpl;
+import beans.services.DiscountService;
+import beans.services.DiscountServiceImpl;
+import beans.services.EventService;
+import beans.services.EventServiceImpl;
+import beans.services.UserService;
+import beans.services.UserServiceImpl;
 import beans.services.discount.BirthdayStrategy;
 import beans.services.discount.DiscountStrategy;
 import beans.services.discount.TicketsStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
