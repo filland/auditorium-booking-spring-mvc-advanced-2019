@@ -17,6 +17,7 @@
         <li><a href="/booking/find-ticket-price">Find ticket price</a></li>
         <li><a href="/user/upload-from-json">Upload users from json</a></li>
         <li><a href="/event/upload-from-json">Upload events from json</a></li>
+        <li><a href="/account">Add your bank account</a></li>
 
         <br>
         Pages available only for managers:

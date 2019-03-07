@@ -22,16 +22,23 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
+    private static final double DEFAULT_AMOUNT_OF_MONEY = 1000.0;
+
+
     private final UserDAO userDAO;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
+    private UserAccountService userAccountService;
+
+    @Autowired
     public UserServiceImpl(@Qualifier("userDAO")UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
+    @Override
     public User register(User user) {
 
         if (null == user.getRoles()){
@@ -45,18 +52,28 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(encodedPass);
 
+        User createdUser = userDAO.create(user);
 
-        return userDAO.create(user);
+        System.out.println("created user = "+createdUser);
+
+//        UserAccount userAccount = new UserAccount(createdUser.getId(), DEFAULT_AMOUNT_OF_MONEY);
+//
+//        userAccountService.create(userAccount);
+
+        return createdUser;
     }
 
+    @Override
     public void remove(User user) {
         userDAO.delete(user);
     }
 
+    @Override
     public User getById(long id) {
         return userDAO.get(id);
     }
 
+    @Override
     public User getUserByEmail(String email) {
         return userDAO.getByEmail(email);
     }
@@ -66,10 +83,12 @@ public class UserServiceImpl implements UserService {
         return userDAO.getByName(username);
     }
 
+    @Override
     public List<User> getUsersByName(String name) {
         return userDAO.getAllByName(name);
     }
 
+    @Override
     public List<Ticket> getBookedTickets() {
         throw new UnsupportedOperationException("not implemented yet");
     }

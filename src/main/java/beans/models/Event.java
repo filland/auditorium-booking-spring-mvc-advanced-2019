@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +27,8 @@ public class Event {
 
     private Auditorium    auditorium;
 
+    private double ticketPrice;
+
     public Event() {
     }
 
@@ -40,6 +43,16 @@ public class Event {
         this.basePrice = basePrice;
         this.dateTime = dateTime;
         this.auditorium = auditorium;
+    }
+
+    public Event(long id, String name, Rate rate, double basePrice, LocalDateTime dateTime, Auditorium auditorium, double ticketPrice) {
+        this.id = id;
+        this.name = name;
+        this.rate = rate;
+        this.basePrice = basePrice;
+        this.dateTime = dateTime;
+        this.auditorium = auditorium;
+        this.ticketPrice = ticketPrice;
     }
 
     public Event withId(Long eventId) {
@@ -94,52 +107,43 @@ public class Event {
         this.auditorium = auditorium;
     }
 
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Event))
-            return false;
-
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-
-        if (id != event.id)
-            return false;
-        if (Double.compare(event.basePrice, basePrice) != 0)
-            return false;
-        if (name != null ? !name.equals(event.name) : event.name != null)
-            return false;
-        if (rate != event.rate)
-            return false;
-        if (dateTime != null ? !dateTime.equals(event.dateTime) : event.dateTime != null)
-            return false;
-        return auditorium != null ? auditorium.equals(event.auditorium) : event.auditorium == null;
-
+        return id == event.id &&
+                Double.compare(event.basePrice, basePrice) == 0 &&
+                Double.compare(event.ticketPrice, ticketPrice) == 0 &&
+                Objects.equals(name, event.name) &&
+                rate == event.rate &&
+                Objects.equals(dateTime, event.dateTime) &&
+                Objects.equals(auditorium, event.auditorium);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (rate != null ? rate.hashCode() : 0);
-        temp = Double.doubleToLongBits(basePrice);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (dateTime != null ? dateTime.hashCode() : 0);
-        result = 31 * result + (auditorium != null ? auditorium.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, rate, basePrice, dateTime, auditorium, ticketPrice);
     }
 
     @Override
     public String toString() {
         return "Event{" +
-               "\nid=" + id +
-               ", \nname='" + name + '\'' +
-               ", \nrate=" + rate +
-               ", \nbasePrice=" + basePrice +
-               ", \ndateTime=" + dateTime +
-               ", \nauditorium=" + auditorium +
-               "\n}";
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", rate=" + rate +
+                ", basePrice=" + basePrice +
+                ", dateTime=" + dateTime +
+                ", auditorium=" + auditorium +
+                ", ticketPrice=" + ticketPrice +
+                '}';
     }
 }

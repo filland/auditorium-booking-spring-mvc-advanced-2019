@@ -49,6 +49,7 @@ public class UserController {
 
         } catch (Throwable e) {
 
+            e.printStackTrace();
             ModelAndView mv = new ModelAndView("error");
             mv.addObject("error_message", "Invalid data provided.");
 

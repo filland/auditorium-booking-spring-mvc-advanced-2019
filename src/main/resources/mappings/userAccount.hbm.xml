@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="beans.models">
+
+    <class name="UserAccount" table="USER_ACCOUNT">
+        <id name="userId" >
+            <column name="USER_ID" unique="true"/>
+            <!--<generator class="foreign">-->
+                <!--<param name="property">id</param>-->
+            <!--</generator>-->
+        </id>
+        <property name="amount" column="AMOUNT" type="double"/>
+        <!--<one-to-one name="userId" class="beans.models.User" constrained="true"/>-->
+    </class>
+
+</hibernate-mapping>

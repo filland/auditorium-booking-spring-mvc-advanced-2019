@@ -33,6 +33,8 @@ public class User {
     private String password;
     private String roles;
 
+//    private UserAccount userAccount;
+
     public User() {
     }
 
@@ -51,6 +53,16 @@ public class User {
         this.password = password;
         this.roles = roles;
     }
+
+//    public User(String email, String name, LocalDate birthday, String password, String roles, UserAccount userAccount) {
+//        id = -1;
+//        this.email = email;
+//        this.name = name;
+//        this.birthday = birthday;
+//        this.password = password;
+//        this.roles = roles;
+//        this.userAccount = userAccount;
+//    }
 
     public User(String email, String name, LocalDate birthday) {
         this(-1, email, name, birthday);
@@ -136,6 +148,14 @@ public class User {
         }
     }
 
+//    public UserAccount getUserAccount() {
+//        return userAccount;
+//    }
+//
+//    public void setUserAccount(UserAccount userAccount) {
+//        this.userAccount = userAccount;
+//    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -146,14 +166,19 @@ public class User {
                 Objects.equals(name, user.name) &&
                 Objects.equals(birthday, user.birthday) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(roles, user.roles);
+                Objects.equals(roles, user.roles)
+//                &&
+//                Objects.equals(userAccount, user.userAccount)
+                ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, name, birthday, password, roles);
+        return Objects.hash(id, email, name, birthday, password, roles
+//                ,
+//                userAccount
+        );
     }
-
 
     @Override
     public String toString() {
@@ -164,6 +189,7 @@ public class User {
                 ", birthday=" + birthday +
                 ", password='" + password + '\'' +
                 ", roles='" + roles + '\'' +
+//                ", userAccount=" + userAccount +
                 '}';
     }
 }
