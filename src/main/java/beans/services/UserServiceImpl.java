@@ -4,6 +4,7 @@ import beans.daos.UserDAO;
 import beans.enums.Role;
 import beans.models.Ticket;
 import beans.models.User;
+import beans.models.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +23,7 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private static final double DEFAULT_AMOUNT_OF_MONEY = 1000.0;
+    private static final double EMPTY_ACCOUNT = 0;
 
 
     private final UserDAO userDAO;
@@ -56,9 +57,9 @@ public class UserServiceImpl implements UserService {
 
         System.out.println("created user = "+createdUser);
 
-//        UserAccount userAccount = new UserAccount(createdUser.getId(), DEFAULT_AMOUNT_OF_MONEY);
-//
-//        userAccountService.create(userAccount);
+        UserAccount userAccount = new UserAccount(createdUser.getId(), EMPTY_ACCOUNT);
+
+        userAccountService.create(userAccount);
 
         return createdUser;
     }

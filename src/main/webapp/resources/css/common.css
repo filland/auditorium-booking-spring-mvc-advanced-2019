@@ -1,5 +1,14 @@
 body {
+    background-color: #ebebeb;
+    font-size: 17px;
+    font-family: Roboto, sans-serif;
+}
 
+a {
+   text-decoration: none;
+}
+
+a:hover {
     background-color: #ebebeb;
 }
 

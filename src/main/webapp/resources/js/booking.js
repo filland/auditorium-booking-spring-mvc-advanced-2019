@@ -43,6 +43,9 @@ function bookTicket() {
     var user_id = $("#user_id").val();
     var seat_number = $("#seats").val();
 
+    $("#message").empty();
+    $("#error").empty();
+
     $.post(
         '/booking/book',
         {
@@ -52,12 +55,13 @@ function bookTicket() {
         },
         function (data) {
 
-            console.log("success");
-            console.log(data);
+            $("#message").text("Seat number "+data.seat_number+" booked.");
         }
-    ).fail(function () {
+    ).fail(function (result) {
 
-        console.log("fail");
+        var jsons = jQuery.parseJSON(result.responseText);
+
+        $("#error").text(jsons.error);
     })
 
 }
@@ -68,8 +72,8 @@ function createNewUsers() {
     $.post(
         '/registration',
         {
-            name: "alexey",
-            email: "fasdfasffd@gmail.com",
+            name: "jack",
+            email: "jack456@gmail.com",
             birthday: "2000-01-01",
             roles: "ROLE_REGISTERED_USER",
             password : "123123"

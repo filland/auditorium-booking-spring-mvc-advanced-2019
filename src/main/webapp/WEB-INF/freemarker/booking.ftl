@@ -29,10 +29,6 @@
     <h3>Book a ticket:</h3>
 
     <div>
-        <label for="user_id">User id: </label>
-        <input type="text" name="user_id" id="user_id">
-    </div>
-    <div>
         <label for="event">Choose an event: </label>
         <select id="event" onchange="updateAllSeats()">
             <#list events as event>
@@ -49,6 +45,8 @@
         </select>
     </div>
     <button type="button" onclick="bookTicket()">Book a ticket</button>
+    <div id="message"></div>
+    <div id="error"></div>
 </div>
 <#include "common/footer.ftl">
 </body>

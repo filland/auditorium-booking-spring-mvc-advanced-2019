@@ -8,9 +8,11 @@ store the amount of prepaid money user has in the system, which
   the account to the BookingFacade class. Add DAO and service
   objects for new entity. Add ticketPrice field to Event entity.
 
+DONE
 2. Update ticket booking methods to check and withdraw money
 from user account according to the ticketPrice for particular event.
 
+DONE ?
 3. Configure appropriate PlatformTransactionManager implementation
  in Spring application context.
 

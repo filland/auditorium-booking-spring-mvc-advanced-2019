@@ -13,11 +13,11 @@
     <ul>
         <li><a href="/registration">Registration page</a></li>
         <li><a href="/event/create">Create new event</a></li>
-        <li><a href="/booking/book">Booking page</a></li>
+        <li><a style="background-color: #42d2ce" href="/booking/book">Booking page</a></li>
         <li><a href="/booking/find-ticket-price">Find ticket price</a></li>
         <li><a href="/user/upload-from-json">Upload users from json</a></li>
         <li><a href="/event/upload-from-json">Upload events from json</a></li>
-        <li><a href="/account">Add your bank account</a></li>
+        <li><a style="background-color: #42d2ce" href="/account">Add your bank account</a></li>
 
         <br>
         Pages available only for managers:

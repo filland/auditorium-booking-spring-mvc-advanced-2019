@@ -1,5 +1,6 @@
 package beans.controllers;
 
+import beans.exceptions.NotEnoughMoneyException;
 import beans.models.Auditorium;
 import beans.models.Event;
 import beans.models.Ticket;
@@ -13,13 +14,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -109,14 +113,17 @@ public class BookingController {
     }
 
     @RequestMapping(path = "/book", method = RequestMethod.POST)
-    public void bookAnAuditorium(@RequestParam("user_id") long userId,
-                                 @RequestParam("event_name") String eventName,
-                                 @RequestParam("seat_number") int seat,
-                                 HttpServletResponse response) {
+    @ResponseBody
+    public Map bookAnAuditorium(@RequestParam("event_name") String eventName,
+                                @RequestParam("seat_number") int seat,
+                                HttpServletResponse response,
+                                Principal principal) {
+
+        Map map = new HashMap();
 
         try {
 
-            User user = userService.getById(userId);
+            User user = userService.getByName(principal.getName());
             Event event = eventService.getByName(eventName).get(0);
 
             Auditorium auditorium = event.getAuditorium();
@@ -139,7 +146,17 @@ public class BookingController {
 
             response.setStatus(HttpStatus.OK.value());
 
+            map.put("seat_number", seat);
+
             System.out.println("a ticket booked successfully");
+
+        } catch (NotEnoughMoneyException e){
+
+            response.setStatus(HttpStatus.BAD_REQUEST.value());
+            map.put(
+                    "error",
+                    "Booking failed. Not enough money on your account"
+            );
 
         } catch (Throwable e) {
 
@@ -147,6 +164,8 @@ public class BookingController {
             System.err.println("not managed to book a ticket");
             response.setStatus(HttpStatus.BAD_REQUEST.value());
         }
+
+        return map;
     }
 
     @Secured("ROLE_BOOKING_MANAGER")
