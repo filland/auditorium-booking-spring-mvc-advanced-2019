@@ -27,7 +27,7 @@ public class BatchUserUploadController {
     private UserService userService;
 
     @RequestMapping(path = "/user/upload-from-json", method = RequestMethod.GET)
-    public ModelAndView openUploadusersFromJsonpage() {
+    public ModelAndView openUploadUsersFromJsonPage() {
 
         ModelAndView mv = new ModelAndView("user-upload-from-json");
         mv.addObject("message", "");

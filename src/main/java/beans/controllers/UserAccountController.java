@@ -33,6 +33,8 @@ public class UserAccountController {
     public ModelAndView putMoneyOnAccount(Principal principal,
                                           @RequestParam("amount") double amount) {
 
+        System.out.println("putting money on the user's account");
+
         User user = userServiceImpl.getByName(principal.getName());
 
         UserAccount userAccount = userAccountService.get(user.getId());
@@ -44,7 +46,7 @@ public class UserAccountController {
         } else {
 
             double newAmount = userAccount.getAmount() + amount;
-            System.out.println("updated amount = " + newAmount);
+            System.out.println("current amount on the account = " + newAmount);
 
             userAccountService.update(
                     new UserAccount(user.getId(), newAmount)

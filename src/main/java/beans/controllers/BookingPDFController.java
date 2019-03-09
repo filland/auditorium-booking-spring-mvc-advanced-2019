@@ -27,6 +27,8 @@ public class BookingPDFController {
                                                 @RequestParam("date_time") String dateTime,
                                                 @RequestParam("auditorium_name") String auditoriumName) {
 
+        System.out.println("generating a pdf with booked tickets for "+ eventName + " event");
+
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime);
 
         List<Ticket> bookedTickets =

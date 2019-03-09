@@ -28,7 +28,7 @@ public class BatchEventUploadController {
 
 
     @RequestMapping(path = "/event/upload-from-json", method = RequestMethod.GET)
-    public ModelAndView openUploadEventsFromJsonpage() {
+    public ModelAndView openUploadEventsFromJsonPage() {
 
         ModelAndView mv = new ModelAndView("event-upload-from-json");
         mv.addObject("message", "");

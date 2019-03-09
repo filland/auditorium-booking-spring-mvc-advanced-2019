@@ -163,7 +163,6 @@ public class BookingServiceImpl implements BookingService {
         if (!seatsAreAlreadyBooked) {
 
             bookingDAO.create(user, ticket);
-
             userAccountService.pay(ticket);
 
         } else {

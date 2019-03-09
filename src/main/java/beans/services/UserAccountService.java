@@ -9,6 +9,8 @@ public interface UserAccountService {
 
     UserAccount get(long userId);
 
+    UserAccount get(String userName);
+
     UserAccount update(UserAccount userAccount);
 
     void delete(UserAccount userAccount);

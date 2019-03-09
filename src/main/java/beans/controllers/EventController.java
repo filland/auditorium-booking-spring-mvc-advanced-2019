@@ -100,8 +100,6 @@ public class EventController {
                     LocalTime.of(15, 45, 0)
             );
 
-            System.out.println(dateOfEvent.toString());
-
             eventService.create(
                     new Event(
                             eventName,
