@@ -2,8 +2,7 @@ package beans.configuration;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.filter.DelegatingFilterProxy;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.ws.transport.http.MessageDispatcherServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -17,13 +16,24 @@ public class ProjectWebApplicationInitializer implements WebApplicationInitializ
         webCtx.register(AppConfiguration.class);
         webCtx.setServletContext(servletContext);
 
-        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(webCtx));
-        servlet.setLoadOnStartup(1);
-        servlet.addMapping("/");
+//        DispatcherServlet springMvc = new DispatcherServlet(webCtx);
+//        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", springMvc);
+//        servlet.setLoadOnStartup(1);
+//        servlet.addMapping("/");
+//        servlet.setAsyncSupported(true);
 
         // bind servlet filter with application context
-        servletContext
-                .addFilter("springSecurityFilterChain", new DelegatingFilterProxy())
-                .addMappingForUrlPatterns(null, true, "/*");
+//        servletContext
+//                .addFilter("springSecurityFilterChain", new DelegatingFilterProxy())
+//                .addMappingForUrlPatterns(null, true, "/*");
+
+        MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
+        messageDispatcherServlet.setApplicationContext(webCtx);
+        messageDispatcherServlet.setTransformWsdlLocations(true);
+
+        ServletRegistration.Dynamic dynamic = servletContext.addServlet("spring-ws", messageDispatcherServlet);
+        dynamic.addMapping("/soap/*");
+        dynamic.setLoadOnStartup(2);
+        dynamic.setAsyncSupported(true);
     }
 }

@@ -32,23 +32,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
+//        http
+//                .authorizeRequests()
+//                .antMatchers(
+//                        "/resources/css/**",
+//                        "/registration").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                    .formLogin()
+//                    .loginPage("/login")
+//                    .failureUrl("/login?error")
+//                    .permitAll()
+//                .and()
+//                    .logout()
+//                    .logoutSuccessUrl("/login?logout")
+//                    .deleteCookies("JSESSIONID")
+//                .and()
+//                    .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400);
+
         http
                 .authorizeRequests()
-                .antMatchers(
-                        "/resources/css/**",
-                        "/registration").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .failureUrl("/login?error")
-                    .permitAll()
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/login?logout")
-                    .deleteCookies("JSESSIONID")
-                .and()
-                    .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400);
+                .antMatchers("/**")
+                .permitAll();
 
     }
 

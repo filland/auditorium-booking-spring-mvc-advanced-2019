@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
  * Date: 2/1/2016
  * Time: 7:42 PM
  */
+@XmlRootElement(name = "event")
 public class Event {
 
     private long          id;

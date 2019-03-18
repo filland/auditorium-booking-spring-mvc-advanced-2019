@@ -1,0 +1,79 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://tutorialspoint/schemas"
+           targetNamespace="http://tutorialspoint/schemas"
+           elementFormDefault="qualified">
+
+
+    <!-- register user-->
+    <xs:element name="getRegisterUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="birthday" type="xs:string" minOccurs="0"/>
+                <xs:element name="email" type="xs:string" minOccurs="0"/>
+                <xs:element name="name" type="xs:string" minOccurs="0"/>
+                <xs:element name="password" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getRegisterUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="registered" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- register user-->
+
+
+
+    <!-- remove user -->
+    <xs:element name="getRemoveUserByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getRemoveUserByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="removed" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- remove user -->
+
+    <!-- get user by username -->
+    <xs:element name="getUserByUsernameRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getUserByUsernameResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="tns:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- get user by username -->
+
+    <xs:complexType name="localDate">
+        <xs:sequence/>
+    </xs:complexType>
+
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="birthday" type="tns:localDate" minOccurs="0"/>
+            <xs:element name="email" type="xs:string" minOccurs="0"/>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="password" type="xs:string" minOccurs="0"/>
+            <xs:element name="roles" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
+
