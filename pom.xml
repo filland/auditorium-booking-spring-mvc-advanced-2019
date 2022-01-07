@@ -12,7 +12,7 @@
         <spring.ver>4.2.4.RELEASE</spring.ver>
         <aspectj.ver>1.8.8</aspectj.ver>
         <hibernate.ver>5.1.0.Final</hibernate.ver>
-        <h2.ver>1.4.191</h2.ver>
+        <h2.ver>2.0.206</h2.ver>
     </properties>
 
     <dependencies>
